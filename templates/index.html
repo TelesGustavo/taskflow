@@ -2,23 +2,105 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <title>TaskFlow</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8">
+
+<title>TaskFlow</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>TaskFlow</h1>
+<h1>TaskFlow</h1>
 
-        <p>Sistema de gerenciamento de tarefas</p>
+<form action="/add" method="POST">
 
-        <button>Nova tarefa</button>
+<input
+type="text"
+name="title"
+placeholder="Título"
+required>
 
-    </div>
+<textarea
+name="description"
+placeholder="Descrição"></textarea>
+
+<select name="priority">
+
+<option>Baixa</option>
+
+<option selected>Média</option>
+
+<option>Alta</option>
+
+</select>
+
+<button type="submit">
+
+Adicionar tarefa
+
+</button>
+
+</form>
+
+<hr>
+
+{% for task in tasks %}
+
+<div class="task">
+
+<h3>
+
+{% if task.completed %}
+
+✅
+
+{% endif %}
+
+{{ task.title }}
+
+</h3>
+
+<p>
+
+{{ task.description }}
+
+</p>
+
+<strong>
+
+Prioridade:
+
+{{ task.priority }}
+
+</strong>
+
+<br><br>
+
+<a href="/toggle/{{ task.id }}">
+
+Concluir
+
+</a>
+
+|
+
+<a href="/delete/{{ task.id }}">
+
+Excluir
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>
 
 </body>
 
