@@ -34,3 +34,24 @@ def toggle_task(task_id):
         if task.id == task_id:
 
             task.completed = not task.completed
+
+def get_task(task_id):
+
+    for task in tasks:
+
+        if task.id == task_id:
+
+            return task
+
+    return None
+
+
+def update_task(task_id, title, description, priority):
+
+    task = get_task(task_id)
+
+    if task:
+
+        task.title = title
+        task.description = description
+        task.priority = priority

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Editar tarefa</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Editar tarefa</h1>
+
+<form action="/update/{{ task.id }}" method="POST">
+
+<input
+type="text"
+name="title"
+value="{{ task.title }}"
+required>
+
+<textarea
+name="description">{{ task.description }}</textarea>
+
+<select name="priority">
+
+<option {% if task.priority=="Baixa" %}selected{% endif %}>Baixa</option>
+
+<option {% if task.priority=="Média" %}selected{% endif %}>Média</option>
+
+<option {% if task.priority=="Alta" %}selected{% endif %}>Alta</option>
+
+</select>
+
+<button>
+
+Salvar alterações
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
